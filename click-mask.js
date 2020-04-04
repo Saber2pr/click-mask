@@ -9,6 +9,14 @@
     navigator.userAgent
   )
   
+  const rgb = () => {
+	const r = Math.floor(Math.random()*256);
+	const g = Math.floor(Math.random()*256);
+	const b = Math.floor(Math.random()*256);
+	const rgb = 'rgb('+r+','+g+','+b+')';
+	return rgb;
+  }
+  
   const time = 1
 
   const style = `.CLICK-MASK{pointer-events:none;z-index:999;position:fixed;width:20px;height:20px;border-radius:50%;background:#a2b4cf;box-shadow:0 0 0 10px #8d8f91;animation:CLICK-MASK ${time}s ease-out;opacity:0;}@keyframes CLICK-MASK{0%{transform:scale(0);opacity:1;}100%{box-shadow:0 0 0 10px transparent;transform:scale(1);opacity:0;}}`
@@ -26,6 +34,9 @@
     mask.className = "CLICK-MASK"
     mask.style.left = x - 10 + "px"
     mask.style.top = y - 10 + "px"
+	const color = rgb()
+	mask.style.background = color
+	mask.style.boxShadow = `0 0 0 10px ${color}`
 
     document.body.append(mask)
 
